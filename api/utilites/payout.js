@@ -17,9 +17,9 @@ class Payout {
     
         _.each(expenses, expense => {
             const student = _.find(students, { name: expense.name });
-            // This is calculate the expesnses if same person paid multiple times.
+            // This is to consolidate the expenses per student
             if (!student) {
-                // Student does not exist yet, create item:
+                // Student does not exist yet, create one:
                 students.push(expense);
             } else {
                 student.amount = (student.amount * 1) + (expense.amount * 1);
@@ -50,6 +50,7 @@ class Payout {
         const payouts=[];
         let totalOwed=0;
        
+        //Filtering the students into Owed vs Owes based on the amount spent vs average.
        _,each(students,student=>{
            if(student.amount> averageShare){
               student.owed=student.amount-averageShare;
@@ -61,7 +62,8 @@ class Payout {
                owes.push(student);
              }
        });
-
+        
+        //Creating a payout based on fracionOfOwed
        _.each(owed, studentOwed => {
              const fracionOfOwed = studentOwed.owed / totalOwed;        
            _.each(owes, studentOwes => {  
