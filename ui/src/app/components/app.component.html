@@ -1,0 +1,60 @@
+<header>
+  <h1 class="heading"> Payout Calculator</h1>
+</header>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+  <div class="container" role="head" *ngIf="!isPayoutReady">
+    <div [formGroup]="expenseList">
+      <div *ngFor="let expense of expenseArray.controls;let i=index" class="list-group list-group-flush">
+        <div class="list-group-item" >
+          <div [formGroup]="expense" class="form-row d-flex justify-content-around">
+            <div class="form-group col-4">
+              <mat-form-field style="display:inline;" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name" required>
+              </mat-form-field>
+              <div *ngIf="expense['controls'].name.errors" class="invalid-feedback">
+                <div *ngIf="expense['controls'].name.errors.required">Name is required</div>
+              </div>
+            </div>
+            <div class="form-group col-4">
+              <mat-form-field style="display:inline;" appearance="fill">
+                <mat-label>Expense Amount</mat-label>
+                <input matInput type="number" min="0.01"
+                step="0.01" placeholder="Expense" formControlName="amount" required>
+              </mat-form-field>
+              <div *ngIf="expense['controls'].amount.errors" class="invalid-feedback">
+                <div *ngIf="expense['controls'].amount.errors.required">Expense is required</div>
+              </div>
+            </div>
+            <div class="form-group col-1">
+              <button mat-icon-button (click)="removeExpense(i)">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-end add-container">
+      <div class="form-group col-1">
+        <button mat-icon-button (click)="addExpense()">
+          <mat-icon class="add-circle">add_circle</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <p class="lead">
+          <button style="width: 95%" type="button" (click)="submitExpense()"
+            [disabled]="isPayoutReady || !expenseList.valid || expenseArray.length < 2" class="btn btn-lg btn-success">
+            Calculate Payout
+          </button>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="error"> {{errorMessage}}</p>
+    </div>
+  </div>
+ <payout [summary]="payOutSummary" *ngIf="isPayoutReady" (back)="navigateToExpense()" (reset)="startNewExpenses()"></payout>
+</div>

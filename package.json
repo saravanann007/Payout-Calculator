@@ -1,0 +1,24 @@
+{
+  "name": "payout-calculator",
+  "version": "1.0.0",
+  "description": "This is to calculate payout for trip expenses",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install --prefix ./api & npm install --prefix ./ui",
+    "start": "npm run start --prefix ./api & npm run start --prefix ./ui",
+    "test": "npm test --prefix ./api & npm test --prefix ./ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saravanann007/Payout-Calculator.git"
+  },
+  "keywords": [
+    "expesnes"
+  ],
+  "author": "Saravanan Naganathan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saravanann007/Payout-Calculator/issues"
+  },
+  "homepage": "https://github.com/saravanann007/Payout-Calculator#readme"
+}

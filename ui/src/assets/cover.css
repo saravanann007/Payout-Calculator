@@ -1,0 +1,85 @@
+
+
+
+html,
+body {
+  height: 100%;
+  background: url("./bg-site.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+}
+
+.calculate-box {
+  background-color: rgba(95, 158, 160, .5);
+  border-radius: .3rem;
+  padding: 3rem !important;
+}
+
+/*
+ * Cover
+ */
+.cover {
+  padding: 0 1.5rem;
+}
+
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+
+.container {
+  max-width: 600px;
+  background: aliceblue;
+  padding-top: 2rem
+}
+
+.add-circle {
+  font-size: 36px;
+  height: 36px !important;
+  line-height: 36px !important;
+  width: 36px !important; 
+  color: green;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.add-container{
+  margin-right: 2.4rem;
+
+}
+
+@media only screen and (max-device-width: 480px) {
+  .add-container {
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+
+  }
+}
+.heading{
+  text-align: center;
+  margin-top: 5rem;
+}
+.message{
+margin-top: 12px;
+}
+
+.list-group-item{
+  background: transparent; 
+  padding: 0;
+}
