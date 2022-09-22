@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     this.intializeForm();
   }
 
-  intializeForm() {
+  intializeForm(): void {
     this.expenseArray = this.formBuilder.array([this.createExpense()]);
     this.expenseList = this.formBuilder.group({ expenses: this.expenseArray });
   }
@@ -43,30 +43,41 @@ export class AppComponent implements OnInit {
     this.expenseArray.removeAt(index);
   }
 
-  navigateToExpense() {
+  navigateToExpense(): void {
     this.isPayoutReady = false;
   }
 
-  startNewExpenses() {
+  startNewExpenses(): void {
     this.intializeForm();
     this.navigateToExpense();
   }
 
   submitExpense(): void {
-    this.expService.submitPayOut(this.expenseArray).subscribe({
-      next: payOutSummary => {
-        this.clearErrorMessage();
-        this.isPayoutReady = true;
-        this.payOutSummary = payOutSummary;
-      },
-      error: error => {
-        this.errorMessage = 'System Error Occurred.Please try again'
-      }
-    });  
+
+    if (this.expenseArray.length > 1) {
+      this.expService.submitPayOut(this.expenseArray).subscribe({
+        next: payOutSummary => {
+          this.clearErrorMessage();
+          this.isPayoutReady = true;
+          this.payOutSummary = payOutSummary;
+        },
+        error: error => {
+          this.showError(`System Error Occurred.Please try again`);
+        }
+      });
+    }
+    else {
+      this.showError(`Please add more than one expenses`)
+    }
+
   }
 
-  clearErrorMessage():void{
-    this.errorMessage='';
+  showError(message: string): void {
+    this.errorMessage = message;
+  }
+
+  clearErrorMessage(): void {
+    this.errorMessage = '';
   }
 
 }
